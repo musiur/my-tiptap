@@ -48,34 +48,34 @@ const DynamicEditorMenuBar = ({ editor }: { editor: Editor | null }) => {
       isActive: editor.isActive("strike"),
       icon: <Strikethrough className="h-4 w-4" />,
     },
-    {
-      id: 4,
-      name: "Heading 1",
-      onClick: () => editor.chain().focus().toggleHeading({ level: 1 }).run(),
-      isActive: editor.isActive("heading", { level: 1 }),
-      icon: <Heading1 className="h-4 w-4" />,
-    },
-    {
-      id: 5,
-      name: "Heading 2",
-      onClick: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-      isActive: editor.isActive("heading", { level: 2 }),
-      icon: <Heading2 className="h-4 w-4" />,
-    },
-    {
-      id: 6,
-      name: "Heading 3",
-      onClick: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-      isActive: editor.isActive("heading", { level: 3 }),
-      icon: <Heading3 className="h-4 w-4" />,
-    },
-    {
-      id: 7,
-      name: "Heading 4",
-      onClick: () => editor.chain().focus().toggleHeading({ level: 4 }).run(),
-      isActive: editor.isActive("heading", { level: 4 }),
-      icon: <Heading4 className="h-4 w-4" />,
-    },
+    // {
+    //   id: 4,
+    //   name: "Heading 1",
+    //   onClick: () => editor.chain().focus().toggleHeading({ level: 1 }).run(),
+    //   isActive: editor.isActive("heading", { level: 1 }),
+    //   icon: <Heading1 className="h-4 w-4" />,
+    // },
+    // {
+    //   id: 5,
+    //   name: "Heading 2",
+    //   onClick: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
+    //   isActive: editor.isActive("heading", { level: 2 }),
+    //   icon: <Heading2 className="h-4 w-4" />,
+    // },
+    // {
+    //   id: 6,
+    //   name: "Heading 3",
+    //   onClick: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
+    //   isActive: editor.isActive("heading", { level: 3 }),
+    //   icon: <Heading3 className="h-4 w-4" />,
+    // },
+    // {
+    //   id: 7,
+    //   name: "Heading 4",
+    //   onClick: () => editor.chain().focus().toggleHeading({ level: 4 }).run(),
+    //   isActive: editor.isActive("heading", { level: 4 }),
+    //   icon: <Heading4 className="h-4 w-4" />,
+    // },
   ];
 
   return (
