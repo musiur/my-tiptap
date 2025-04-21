@@ -120,3 +120,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+.tiptap {
+  :first-child {
+    margin-top: 0;
+  }
+
+  mark {
+    background-color: #faf594;
+    border-radius: 0.4rem;
+    box-decoration-break: clone;
+    padding: 0.1rem 0.3rem;
+  }
+}

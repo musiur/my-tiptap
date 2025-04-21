@@ -1,11 +1,16 @@
-import { Tiptap } from "@/components/tiptap";
+"use client";
+
 import { Layouts } from "@/components/layouts";
+import { DEditor } from "@/components/dynamics/d-editor";
 
 const Page = () => {
+  const handleOnChange = (richText: string) => {
+    console.log(richText);
+  };
   return (
     <Layouts.Container>
       <Layouts.Section>
-        <Tiptap.Root />
+        <DEditor.Editor description={"Hello there! My name is Musiur Alam Opu. And you?"} onChange={handleOnChange} />
       </Layouts.Section>
     </Layouts.Container>
   );
