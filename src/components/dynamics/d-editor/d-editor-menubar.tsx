@@ -6,10 +6,10 @@ import { Editor } from "@tiptap/react";
 import clsx from "clsx";
 import {
   Bold,
-  Heading1,
-  Heading2,
-  Heading3,
-  Heading4,
+  // Heading1,
+  // Heading2,
+  // Heading3,
+  // Heading4,
   Italic,
   Strikethrough,
   Highlighter,
