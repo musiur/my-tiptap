@@ -6,27 +6,18 @@ import { Editor } from "@tiptap/react";
 import clsx from "clsx";
 import {
   Bold,
-  Heading1,
-  Heading2,
-  Heading3,
-  Heading4,
   Italic,
   Strikethrough,
-  Highlighter,
 } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { PopoverClose } from "@radix-ui/react-popover";
+import { DynamicEditorMenuHeading } from "./d-editor-menu-heading";
+import { DynamicEditorMenuTextAlign } from "./d-editor-menu-text-align";
+import { DynamicEditorMenuHighlight } from "./d-editor-menu-highlight";
 
-const DynamicEditorMenuBar = ({ editor }: { editor: Editor | null }) => {
+const DynamicEditorMenuItems = (editor: Editor | null) => {
   if (!editor) {
-    return null;
+    return [];
   }
-
-  const menu = [
+  return [
     {
       id: 1,
       name: "Bold",
@@ -48,38 +39,18 @@ const DynamicEditorMenuBar = ({ editor }: { editor: Editor | null }) => {
       isActive: editor.isActive("strike"),
       icon: <Strikethrough className="h-4 w-4" />,
     },
-    // {
-    //   id: 4,
-    //   name: "Heading 1",
-    //   onClick: () => editor.chain().focus().toggleHeading({ level: 1 }).run(),
-    //   isActive: editor.isActive("heading", { level: 1 }),
-    //   icon: <Heading1 className="h-4 w-4" />,
-    // },
-    // {
-    //   id: 5,
-    //   name: "Heading 2",
-    //   onClick: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-    //   isActive: editor.isActive("heading", { level: 2 }),
-    //   icon: <Heading2 className="h-4 w-4" />,
-    // },
-    // {
-    //   id: 6,
-    //   name: "Heading 3",
-    //   onClick: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-    //   isActive: editor.isActive("heading", { level: 3 }),
-    //   icon: <Heading3 className="h-4 w-4" />,
-    // },
-    // {
-    //   id: 7,
-    //   name: "Heading 4",
-    //   onClick: () => editor.chain().focus().toggleHeading({ level: 4 }).run(),
-    //   isActive: editor.isActive("heading", { level: 4 }),
-    //   icon: <Heading4 className="h-4 w-4" />,
-    // },
   ];
+};
+
+const DynamicEditorMenuBar = ({ editor }: { editor: Editor | null }) => {
+  if (!editor) {
+    return null;
+  }
+
+  const menu = DynamicEditorMenuItems(editor);
 
   return (
-    <Layouts.Flex className="gap-1 border rounded-lg p-1">
+    <Layouts.Flex className="border rounded-lg p-1 bg-background">
       <ToggleGroup
         type="multiple"
         className="flex-wrap justify-start gap-1 rounded-lg"
@@ -102,24 +73,12 @@ const DynamicEditorMenuBar = ({ editor }: { editor: Editor | null }) => {
           );
         })}
       </ToggleGroup>
-      {/* editor.commands.toggleHighlight({ color: e.target.value }) */}
-      <Popover>
-        <PopoverTrigger className="bg-gray-200 hover:opacity-60 px-2 rounded-md">
-          <Highlighter className="h-4 w-4" />
-        </PopoverTrigger>
-        <PopoverContent className="w-auto flex items-center gap-1 p-1">
-          {["lightgreen", "red", "lightblue", "yellow"].map((color, index) => {
-            return (
-              <PopoverClose
-                key={index}
-                className="h-6 w-6 rounded-md"
-                style={{ background: color }}
-                onClick={() => editor.chain().toggleHighlight({ color }).run()}
-              ></PopoverClose>
-            );
-          })}
-        </PopoverContent>
-      </Popover>
+
+      <Layouts.Flex className="!gap-1">
+        <DynamicEditorMenuHeading editor={editor} />
+        <DynamicEditorMenuTextAlign editor={editor} />
+      </Layouts.Flex>
+      <DynamicEditorMenuHighlight editor={editor} />
     </Layouts.Flex>
   );
 };

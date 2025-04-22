@@ -1,11 +1,12 @@
 "use client";
 
 import StarterKit from "@tiptap/starter-kit";
-import { Layouts } from "@/components/layouts";
 import Heading from "@tiptap/extension-heading";
 import Highlight from "@tiptap/extension-highlight";
-import DynamicEditorMenuBar from "./d-editor-menubar";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { EditorContent, JSONContent, useEditor } from "@tiptap/react";
+import { DynamicEditorBubbleMenu } from "./d-editor-bubble-menu";
+import TextAlign from "@tiptap/extension-text-align";
+import { DynamicEditorCopyContent } from "./d-editor-copy-content";
 
 const DefaultDescription = "<p>Hello World! 🌎️</p>";
 
@@ -14,18 +15,16 @@ const DynamicEditor = ({
   onChange,
 }: {
   description?: string;
-  onChange?: (richText: string) => void;
+  onChange?: (richText: string | JSONContent) => void;
 }) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure(),
-      Heading.configure({
-        HTMLAttributes: {
-          class: "text-4xl",
-          level: [1],
-        },
-      }),
+      Heading.configure({}),
       Highlight.configure({ multicolor: true }),
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
     ],
     content: description,
     editorProps: {
@@ -35,7 +34,7 @@ const DynamicEditor = ({
       },
     },
     onUpdate: ({ editor }) => {
-      onChange?.(editor.getHTML());
+      onChange?.(editor.getText());
     },
   });
 
@@ -44,10 +43,11 @@ const DynamicEditor = ({
   }
 
   return (
-    <Layouts.Grid className="grid grid-cols-1 !gap-1">
-      <DynamicEditorMenuBar editor={editor} />
+    <div className="space-y-4">
+      <DynamicEditorBubbleMenu editor={editor} />
       <EditorContent editor={editor} />
-    </Layouts.Grid>
+      <DynamicEditorCopyContent editor={editor} />
+    </div>
   );
 };
 

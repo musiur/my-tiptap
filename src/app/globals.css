@@ -126,10 +126,43 @@
     margin-top: 0;
   }
 
+  @apply space-y-2;
+
+  p {
+    @apply space-y-1;
+  }
+
+  h1 {
+    @apply text-4xl font-bold mt-8;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold;
+  }
+
+  h4 {
+    @apply text-xl font-semibold;
+  }
+
+  ul {
+    @apply list-disc pl-8 space-y-2;
+  }
+
   mark {
     background-color: #faf594;
     border-radius: 0.4rem;
     box-decoration-break: clone;
     padding: 0.1rem 0.3rem;
+  }
+
+  code {
+    @apply bg-gray-200 rounded-md p-1;
+  }
+  pre {
+    @apply bg-gray-200 rounded-md p-4;
   }
 }
